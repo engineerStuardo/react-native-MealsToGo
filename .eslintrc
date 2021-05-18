@@ -1,6 +1,13 @@
 {
   "extends": "@react-native-community",
   "rules": {
-    "quotes": [2,"double",{"avoidEscape":true}]
+    "jsx-quotes": ["warn", { "singleQuote": true }],
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "semi": true
+      }
+    ]
   }
 }
