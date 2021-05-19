@@ -13,9 +13,18 @@ const RestaurantCardCover = styled(Card.Cover)`
 `;
 
 const Title = styled(Text)`
-  padding: ${props => props.theme.space[3]};
   color: ${props => props.theme.colors.text.primary};
   font-family: ${props => props.theme.fonts.body};
+  font-size: ${props => props.theme.fontSizes.title};
+`;
+
+const Info = styled.View`
+  padding: ${props => props.theme.space[3]};
+`;
+
+const Address = styled(Text)`
+  font-family: ${props => props.theme.fonts.body};
+  font-size: ${props => props.theme.fontSizes.caption};
 `;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
@@ -34,7 +43,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
-      <Title>{name}</Title>
+      <Info>
+        <Title>{name}</Title>
+        <Address>{address}</Address>
+      </Info>
     </RestaurantCard>
   );
 };
