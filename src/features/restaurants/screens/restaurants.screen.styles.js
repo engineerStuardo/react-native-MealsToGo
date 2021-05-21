@@ -1,4 +1,4 @@
-import { SafeAreaView, View, StatusBar, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import styled from 'styled-components/native';
 
 const SearchContainer = styled(View)`
@@ -9,4 +9,4 @@ const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: { padding: 16 },
 })``;
 
-export {  SearchContainer, RestaurantList };
+export { SearchContainer, RestaurantList };
