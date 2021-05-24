@@ -4,35 +4,29 @@ import { Searchbar } from 'react-native-paper';
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 import { Spacer } from '../../../components/spacer/spacer-component';
 import { SearchContainer, RestaurantList } from './restaurants.screen.styles';
+import { UseGlobalContext } from '../../../services/restaurants/customHook';
+import { log } from 'react-native-reanimated';
 
-export const RestaurantScreen = () => (
-  <>
-    <SearchContainer>
-      <Searchbar />
-    </SearchContainer>
-    <RestaurantList
-      data={[
-        { name: 1 },
-        { name: 2 },
-        { name: 3 },
-        { name: 4 },
-        { name: 5 },
-        { name: 6 },
-        { name: 7 },
-        { name: 8 },
-        { name: 9 },
-        { name: 10 },
-        { name: 11 },
-        { name: 12 },
-        { name: 13 },
-        { name: 14 },
-      ]}
-      renderItem={() => (
-        <Spacer position='bottom' size='large'>
-          <RestaurantInfoCard />
-        </Spacer>
-      )}
-      keyExtractor={item => item.name}
-    />
-  </>
-);
+export const RestaurantScreen = () => {
+  const { restaurants, isLoading, error } = UseGlobalContext();
+
+  return (
+    <>
+      <SearchContainer>
+        <Searchbar />
+      </SearchContainer>
+      <RestaurantList
+        data={restaurants}
+        renderItem={({ item }) => {
+          console.log(item);
+          return (
+            <Spacer position='bottom' size='large'>
+              <RestaurantInfoCard restaurant={item} />
+            </Spacer>
+          );
+        }}
+        keyExtractor={item => item.name}
+      />
+    </>
+  );
+};

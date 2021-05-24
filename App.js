@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from './src/infrastructure/theme';
 import { RestaurantScreen } from './src/features/restaurants/screens/restaurants.screen';
 import { SafeArea } from './src/components/utility/safe-area-component';
-import { restaurantsRequest } from './src/services/restaurants/restaurants-service';
+import { RestaurantProvider } from './src/services/restaurants/restaurants-context';
 
 const HomeScreen = () => {
   return (
@@ -73,17 +73,19 @@ export default function App() {
   return (
     <SafeArea>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={createScreenOptions}
-            tabBarOptions={tabBarColors()}
-          >
-            <Tab.Screen name='Restaurant' component={RestaurantScreen} />
-            <Tab.Screen name='Map' component={HomeScreen} />
-            <Tab.Screen name='Settings' component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
-        <ExpoStatusBar style='auto' />
+        <RestaurantProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={createScreenOptions}
+              tabBarOptions={tabBarColors()}
+            >
+              <Tab.Screen name='Restaurant' component={RestaurantScreen} />
+              <Tab.Screen name='Map' component={HomeScreen} />
+              <Tab.Screen name='Settings' component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+          <ExpoStatusBar style='auto' />
+        </RestaurantProvider>
       </ThemeProvider>
     </SafeArea>
   );

@@ -1,15 +1,41 @@
-import React, { useContext, createContext } from 'react';
+import React, { useState, useEffect, createContext, useMemo } from 'react';
 
-const RestaurantConext = createContext();
+import {
+  restaurantsRequest,
+  restaurantsTransform,
+} from './restaurants-service';
+
+export const RestaurantContext = createContext();
 
 export const RestaurantProvider = ({ children }) => {
-  return (
-    <RestaurantConext.Provider value='hello world'>
-      {children}
-    </RestaurantConext.Provider>
-  );
-};
+  const [restaurants, setRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-export const UseGlobalContext = () => {
-  return useContext(RestaurantConext);
+  const retrieveRestaurants = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      restaurantsRequest()
+        .then(restaurantsTransform)
+        .then(result => {
+          setIsLoading(false);
+          setRestaurants(result);
+        })
+        .catch(error => {
+          setIsLoading(false);
+          setError(error);
+          console.log(error);
+        });
+    }, 2000);
+  };
+
+  useEffect(() => {
+    retrieveRestaurants();
+  }, []);
+
+  return (
+    <RestaurantContext.Provider value={{ restaurants, isLoading, error }}>
+      {children}
+    </RestaurantContext.Provider>
+  );
 };
