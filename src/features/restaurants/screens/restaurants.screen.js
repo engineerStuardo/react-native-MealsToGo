@@ -1,24 +1,28 @@
 import React from 'react';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, Colors } from 'react-native-paper';
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 import { Spacer } from '../../../components/spacer/spacer-component';
 import { SearchContainer, RestaurantList } from './restaurants.screen.styles';
 import { UseGlobalContext } from '../../../services/restaurants/customHook';
-import { log } from 'react-native-reanimated';
+import { Loading, LoadingContainer } from './restaurants.screen.styles';
 
 export const RestaurantScreen = () => {
   const { restaurants, isLoading, error } = UseGlobalContext();
 
   return (
     <>
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size={50} animating={true} color={Colors.blue800} />
+        </LoadingContainer>
+      )}
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
-          console.log(item);
           return (
             <Spacer position='bottom' size='large'>
               <RestaurantInfoCard restaurant={item} />
