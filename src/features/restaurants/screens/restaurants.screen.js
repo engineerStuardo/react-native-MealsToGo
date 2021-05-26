@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Colors } from 'react-native-paper';
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
@@ -24,11 +24,13 @@ export const RestaurantScreen = ({ navigation }) => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RestaurantDetail')}
+            >
               <Spacer position='bottom' size='large'>
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={item => item.name}
