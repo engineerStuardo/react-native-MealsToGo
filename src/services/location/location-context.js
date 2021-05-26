@@ -15,12 +15,12 @@ export const LocationProvider = ({ children }) => {
     locationRequest(searchKeyword.toLowerCase())
       .then(locationTransform)
       .then(result => {
-        seIsLoading(false);
+        setIsLoading(false);
         setLocation(result);
         console.log(result);
       })
       .catch(error => {
-        seIsLoading(false);
+        setIsLoading(false);
         setError(error);
       });
   };
