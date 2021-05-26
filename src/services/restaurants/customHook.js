@@ -2,6 +2,6 @@ import { useContext } from 'react';
 
 import { RestaurantContext } from './restaurants-context';
 
-export const useGlobalContext = () => {
+export const useRestaurantsContext = () => {
   return useContext(RestaurantContext);
 };
