@@ -4,11 +4,11 @@ import { Searchbar, Colors } from 'react-native-paper';
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 import { Spacer } from '../../../components/spacer/spacer-component';
 import { SearchContainer, RestaurantList } from './restaurants.screen.styles';
-import { UseGlobalContext } from '../../../services/restaurants/customHook';
+import { useGlobalContext } from '../../../services/restaurants/customHook';
 import { Loading, LoadingContainer } from './restaurants.screen.styles';
 
 export const RestaurantScreen = () => {
-  const { restaurants, isLoading, error } = UseGlobalContext();
+  const { restaurants, isLoading, error } = useGlobalContext();
 
   return (
     <>
