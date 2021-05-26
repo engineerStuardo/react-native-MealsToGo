@@ -1,4 +1,5 @@
 import React from 'react';
+import { Pressable } from 'react-native';
 import { Colors } from 'react-native-paper';
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
@@ -8,7 +9,7 @@ import { useRestaurantsContext } from '../../../services/restaurants/customHook'
 import { Loading, LoadingContainer } from './restaurants.screen.styles';
 import { Search } from '../components/search-component';
 
-export const RestaurantScreen = () => {
+export const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useRestaurantsContext();
 
   return (
@@ -23,9 +24,11 @@ export const RestaurantScreen = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Spacer position='bottom' size='large'>
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
+            <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+              <Spacer position='bottom' size='large'>
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </Pressable>
           );
         }}
         keyExtractor={item => item.name}
