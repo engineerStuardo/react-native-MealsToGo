@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useMemo } from 'react';
 
+import { useLocationContext } from '../location/customHook';
 import {
   restaurantsRequest,
   restaurantsTransform,
@@ -11,11 +12,13 @@ export const RestaurantProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { location } = useLocationContext();
 
-  const retrieveRestaurants = () => {
+  const retrieveRestaurants = locationString => {
+    setRestaurants([]);
     setIsLoading(true);
     setTimeout(() => {
-      restaurantsRequest()
+      restaurantsRequest(locationString)
         .then(restaurantsTransform)
         .then(result => {
           setIsLoading(false);
@@ -24,14 +27,16 @@ export const RestaurantProvider = ({ children }) => {
         .catch(error => {
           setIsLoading(false);
           setError(error);
-          console.log(error);
         });
     }, 2000);
   };
 
   useEffect(() => {
-    retrieveRestaurants();
-  }, []);
+    if (location) {
+      const locationString = `${location.lat},${location.lng}`;
+      retrieveRestaurants(locationString);
+    }
+  }, [location]);
 
   return (
     <RestaurantContext.Provider value={{ restaurants, isLoading, error }}>
