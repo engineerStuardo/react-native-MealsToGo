@@ -27,7 +27,12 @@ export const RestaurantScreen = ({ navigation }) => {
         isFavouritesToggled={isToggled}
         onFavouritesToggled={() => setIsToggled(!isToggled)}
       />
-      {isToggled && <FavouritesBar />}
+      {isToggled && (
+        <FavouritesBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
