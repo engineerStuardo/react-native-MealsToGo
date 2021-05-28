@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Colors } from 'react-native-paper';
 
@@ -9,10 +9,12 @@ import { useRestaurantsContext } from '../../../services/restaurants/customHook'
 import { Loading, LoadingContainer } from './restaurants.screen.styles';
 import { Search } from '../components/search-component';
 import { useFavouritesContext } from '../../../services/favourites/customHook';
+import { FavouritesBar } from '../../../components/favourites/favourites-bar-component';
 
 export const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useRestaurantsContext();
   const { favourites } = useFavouritesContext();
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <>
@@ -21,7 +23,11 @@ export const RestaurantScreen = ({ navigation }) => {
           <Loading size={50} animating={true} color={Colors.blue800} />
         </LoadingContainer>
       )}
-      <Search />
+      <Search
+        isFavouritesToggled={isToggled}
+        onFavouritesToggled={() => setIsToggled(!isToggled)}
+      />
+      {isToggled && <FavouritesBar />}
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
