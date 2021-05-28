@@ -8,9 +8,11 @@ import { RestaurantList } from './restaurants.screen.styles';
 import { useRestaurantsContext } from '../../../services/restaurants/customHook';
 import { Loading, LoadingContainer } from './restaurants.screen.styles';
 import { Search } from '../components/search-component';
+import { useFavouritesContext } from '../../../services/favourites/customHook';
 
 export const RestaurantScreen = ({ navigation }) => {
-  const { restaurants, isLoading, error } = useRestaurantsContext();
+  const { restaurants, isLoading } = useRestaurantsContext();
+  const { favourites } = useFavouritesContext();
 
   return (
     <>
