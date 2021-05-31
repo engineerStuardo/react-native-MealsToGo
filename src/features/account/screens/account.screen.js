@@ -7,17 +7,25 @@ import {
   AccountCover,
   AccountContainer,
   AuthButton,
+  Title,
 } from '../components/account.styles';
+import { useAuthenticationContext } from '../../../services/authentication/customHook';
 
 export const AccountScreen = ({ navigation }) => {
+  const { setError } = useAuthenticationContext();
+
   return (
     <AccountBackground>
       <AccountCover />
+      <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton
           icon='login'
           mode='contained'
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => {
+            setError(null);
+            navigation.navigate('Login');
+          }}
         >
           Login
         </AuthButton>
