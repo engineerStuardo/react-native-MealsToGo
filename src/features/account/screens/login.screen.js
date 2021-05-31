@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextInput } from 'react-native-paper';
 
 import {
   AccountBackground,
@@ -16,6 +17,7 @@ import { Text } from '../../../components/typography/text-component';
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const { onLogin, error, setError } = useAuthenticationContext();
 
   return (
@@ -33,10 +35,18 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer size='large'>
           <AuthInput
+            right={
+              <TextInput.Icon
+                name={`${showPassword ? 'eye' : 'eye-off'}`}
+                color={'gray'}
+                size={28}
+                onPress={() => setShowPassword(!showPassword)}
+              />
+            }
             label='Password'
             value={password}
             textContentType='password'
-            secureTextEntry
+            secureTextEntry={showPassword ? false : true}
             autoCapitalize='none'
             secure
             onChangeText={password => setPassword(password)}
