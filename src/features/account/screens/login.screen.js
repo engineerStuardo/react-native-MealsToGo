@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper';
+import { TextInput, ActivityIndicator, Colors } from 'react-native-paper';
 
 import {
   AccountBackground,
@@ -18,7 +18,7 @@ export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const { onLogin, error, setError } = useAuthenticationContext();
+  const { onLogin, error, setError, isLoading } = useAuthenticationContext();
 
   return (
     <AccountBackground>
@@ -52,13 +52,17 @@ export const LoginScreen = ({ navigation }) => {
           />
         </Spacer>
         <Spacer size='large'>
-          <AuthButton
-            icon='login'
-            mode='contained'
-            onPress={() => onLogin(email, password)}
-          >
-            LOGIN
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon='login'
+              mode='contained'
+              onPress={() => onLogin(email, password)}
+            >
+              LOGIN
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={Colors.blue300} />
+          )}
         </Spacer>
         {error && (
           <ErrorContainer>
@@ -68,18 +72,20 @@ export const LoginScreen = ({ navigation }) => {
           </ErrorContainer>
         )}
       </AccountContainer>
-      <Spacer size='large'>
-        <AuthButton
-          icon='keyboard-return'
-          mode='contained'
-          onPress={() => {
-            setError(null);
-            navigation.goBack();
-          }}
-        >
-          Back
-        </AuthButton>
-      </Spacer>
+      {!isLoading && (
+        <Spacer size='large'>
+          <AuthButton
+            icon='keyboard-return'
+            mode='contained'
+            onPress={() => {
+              setError(null);
+              navigation.goBack();
+            }}
+          >
+            Back
+          </AuthButton>
+        </Spacer>
+      )}
     </AccountBackground>
   );
 };

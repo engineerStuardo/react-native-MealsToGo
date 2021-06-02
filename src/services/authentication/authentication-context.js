@@ -24,8 +24,11 @@ export const AuthenticationProvider = ({ children }) => {
   };
 
   const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
+    console.log(isLoading);
     if (password !== repeatedPassword) {
       setError('Password do not match');
+      setIsLoading(false);
       return;
     }
     firebase

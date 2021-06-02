@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper';
+import { TextInput, ActivityIndicator, Colors } from 'react-native-paper';
 
 import {
   AccountBackground,
@@ -20,7 +20,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [repeatedPassword, setRepeatedPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatedPassword, setShowRepeatedPassword] = useState(false);
-  const { onRegister, error, setError } = useAuthenticationContext();
+  const { onRegister, error, setError, isLoading } = useAuthenticationContext();
 
   return (
     <AccountBackground>
@@ -72,13 +72,17 @@ export const RegisterScreen = ({ navigation }) => {
           />
         </Spacer>
         <Spacer size='large'>
-          <AuthButton
-            icon='tooltip-text-outline'
-            mode='contained'
-            onPress={() => onRegister(email, password, repeatedPassword)}
-          >
-            Register
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon='tooltip-text-outline'
+              mode='contained'
+              onPress={() => onRegister(email, password, repeatedPassword)}
+            >
+              Register
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={Colors.blue300} />
+          )}
         </Spacer>
         {error && (
           <ErrorContainer>
@@ -88,18 +92,20 @@ export const RegisterScreen = ({ navigation }) => {
           </ErrorContainer>
         )}
       </AccountContainer>
-      <Spacer size='large'>
-        <AuthButton
-          icon='keyboard-return'
-          mode='contained'
-          onPress={() => {
-            setError(null);
-            navigation.goBack();
-          }}
-        >
-          Back
-        </AuthButton>
-      </Spacer>
+      {!isLoading && (
+        <Spacer size='large'>
+          <AuthButton
+            icon='keyboard-return'
+            mode='contained'
+            onPress={() => {
+              setError(null);
+              navigation.goBack();
+            }}
+          >
+            Back
+          </AuthButton>
+        </Spacer>
+      )}
     </AccountBackground>
   );
 };
