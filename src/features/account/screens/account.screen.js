@@ -28,7 +28,7 @@ export const AccountScreen = ({ navigation }) => {
         <LottieView
           ref={animation}
           loop={true}
-          source={require('../../../../assets/watermelon.json')}
+          source={require('../../../../assets/food-loading-animation.json')}
         />
       </AnimationWrapper>
       <Title>Meals To Go</Title>
