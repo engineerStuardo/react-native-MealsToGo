@@ -6,6 +6,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { RestaurantNavigator } from './restaurants.navigator';
 import { MapScreen } from '../../features/map/screens/map.screen';
 import { useAuthenticationContext } from '../../services/authentication/customHook';
+import { RestaurantProvider } from '../../services/restaurants/restaurants-context';
+import { LocationProvider } from '../../services/location/location-context';
+import { FavouritesProvider } from '../../services/favourites/favourites-context';
 
 const SettingsScreen = () => {
   const { onLogout } = useAuthenticationContext();
@@ -43,12 +46,18 @@ const tabBarColors = () => ({
 });
 
 export const AppNavigator = () => (
-  <Tab.Navigator
-    screenOptions={createScreenOptions}
-    tabBarOptions={tabBarColors()}
-  >
-    <Tab.Screen name='Restaurant' component={RestaurantNavigator} />
-    <Tab.Screen name='Map' component={MapScreen} />
-    <Tab.Screen name='Settings' component={SettingsScreen} />
-  </Tab.Navigator>
+  <FavouritesProvider>
+    <LocationProvider>
+      <RestaurantProvider>
+        <Tab.Navigator
+          screenOptions={createScreenOptions}
+          tabBarOptions={tabBarColors()}
+        >
+          <Tab.Screen name='Restaurant' component={RestaurantNavigator} />
+          <Tab.Screen name='Map' component={MapScreen} />
+          <Tab.Screen name='Settings' component={SettingsScreen} />
+        </Tab.Navigator>
+      </RestaurantProvider>
+    </LocationProvider>
+  </FavouritesProvider>
 );

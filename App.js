@@ -10,9 +10,6 @@ import firebase from 'firebase';
 
 import { theme } from './src/infrastructure/theme';
 import { SafeArea } from './src/components/utility/safe-area-component';
-import { RestaurantProvider } from './src/services/restaurants/restaurants-context';
-import { LocationProvider } from './src/services/location/location-context';
-import { FavouritesProvider } from './src/services/favourites/favourites-context';
 import { Navigation } from './src/infrastructure/navigation';
 import { AuthenticationProvider } from './src/services/authentication/authentication-context';
 
@@ -44,13 +41,7 @@ export default function App() {
     <SafeArea>
       <ThemeProvider theme={theme}>
         <AuthenticationProvider>
-          <FavouritesProvider>
-            <LocationProvider>
-              <RestaurantProvider>
-                <Navigation />
-              </RestaurantProvider>
-            </LocationProvider>
-          </FavouritesProvider>
+          <Navigation />
         </AuthenticationProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />

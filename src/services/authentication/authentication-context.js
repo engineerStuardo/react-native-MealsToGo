@@ -12,7 +12,6 @@ export const AuthenticationProvider = ({ children }) => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(usr => {
-      console.log(usr);
       if (usr) {
         setUser(usr);
         setIsLoading(false);
@@ -37,7 +36,6 @@ export const AuthenticationProvider = ({ children }) => {
 
   const onRegister = (email, password, repeatedPassword) => {
     setIsLoading(true);
-    console.log(isLoading);
     if (password !== repeatedPassword) {
       setError('Password do not match');
       setIsLoading(false);
@@ -58,7 +56,13 @@ export const AuthenticationProvider = ({ children }) => {
 
   const onLogout = () => {
     setUser(null);
-    firebase.auth().signOut();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        setUser(null);
+        setError(null);
+      });
   };
 
   return (
