@@ -35,6 +35,7 @@ export const AuthInput = styled(TextInput)`
 `;
 
 export const Title = styled.Text`
+  margin-top: ${props => props.theme.space[5]};
   font-size: 30px;
 `;
 

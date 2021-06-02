@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import LottieView from 'lottie-react-native';
 
 import { Spacer } from '../../../components/spacer/spacer-component';
@@ -15,16 +15,19 @@ import { useAuthenticationContext } from '../../../services/authentication/custo
 
 export const AccountScreen = ({ navigation }) => {
   const { setError } = useAuthenticationContext();
+  const animation = useRef(null);
+
+  useEffect(() => {
+    animation.current.play();
+  }, []);
 
   return (
     <AccountBackground>
       <AccountCover />
       <AnimationWrapper>
         <LottieView
-          key='animation'
-          autoplay
-          loop
-          resizeMode='cover'
+          ref={animation}
+          loop={true}
           source={require('../../../../assets/watermelon.json')}
         />
       </AnimationWrapper>
