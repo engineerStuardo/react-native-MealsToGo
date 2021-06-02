@@ -56,7 +56,10 @@ export const LoginScreen = ({ navigation }) => {
             <AuthButton
               icon='login'
               mode='contained'
-              onPress={() => onLogin(email, password)}
+              onPress={() => {
+                setError(null);
+                onLogin(email, password);
+              }}
             >
               LOGIN
             </AuthButton>

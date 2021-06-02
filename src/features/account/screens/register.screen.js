@@ -76,7 +76,10 @@ export const RegisterScreen = ({ navigation }) => {
             <AuthButton
               icon='tooltip-text-outline'
               mode='contained'
-              onPress={() => onRegister(email, password, repeatedPassword)}
+              onPress={() => {
+                setError(null);
+                onRegister(email, password, repeatedPassword);
+              }}
             >
               Register
             </AuthButton>
