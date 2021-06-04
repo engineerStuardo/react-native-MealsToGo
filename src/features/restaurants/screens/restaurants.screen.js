@@ -10,6 +10,7 @@ import { Loading, LoadingContainer } from './restaurants.screen.styles';
 import { Search } from '../components/search-component';
 import { useFavouritesContext } from '../../../services/favourites/customHook';
 import { FavouritesBar } from '../../../components/favourites/favourites-bar-component';
+import { FadeInView } from '../../../components/animations/fade.animation';
 
 export const RestaurantScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useRestaurantsContext();
@@ -43,7 +44,9 @@ export const RestaurantScreen = ({ navigation }) => {
               }
             >
               <Spacer position='bottom' size='large'>
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
