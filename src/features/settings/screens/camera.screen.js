@@ -44,6 +44,7 @@ export const CameraScreen = ({ navigation }) => {
       <ProfileCamera
         ref={camera => (cameraRef.current = camera)}
         type={Camera.Constants.Type.front}
+        ratio={'16:9'}
       ></ProfileCamera>
     </TouchableOpacity>
   );
