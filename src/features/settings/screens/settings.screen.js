@@ -51,7 +51,7 @@ export const SettingsScreen = ({ navigation }) => {
                 style={{ backgroundColor: '#2182BD' }}
               />
             )}
-            <Text variant='caption'>(Tap to change the photo)</Text>
+            <Text variant='caption'>(Tap to change photo)</Text>
             <Spacer position='top' size='large'>
               <Text variant='body'>{user.email}</Text>
             </Spacer>
