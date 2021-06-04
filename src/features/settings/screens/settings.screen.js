@@ -22,7 +22,7 @@ export const SettingsScreen = ({ navigation }) => {
   const [photo, setPhoto] = useState(null);
 
   const getProfilePicture = async currentUser => {
-    const photoUri = AsyncStorage.getItem(`${currentUser.uid}-photo`);
+    const photoUri = await AsyncStorage.getItem(`${currentUser.uid}-photo`);
     setPhoto(photoUri);
   };
 
@@ -33,26 +33,29 @@ export const SettingsScreen = ({ navigation }) => {
   return (
     <View>
       <List.Section>
-        <TouchableOpacity onPress={navigation.navigate('Camera')}>
+        <Spacer position='top' size='large' />
+        <Spacer position='top' size='large' />
+        <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
           <AvatarContainer>
-            {!photo ? (
+            {!photo && (
               <Avatar.Icon
                 size={180}
                 icon='human'
                 style={{ backgroundColor: '#2182BD' }}
               />
-            ) : (
+            )}
+            {photo && (
               <Avatar.Image
                 size={180}
                 source={{ uri: photo }}
                 style={{ backgroundColor: '#2182BD' }}
               />
             )}
-
+            <Text variant='caption'>(Tap to change the photo)</Text>
             <Spacer position='top' size='large'>
-              <Text variant='caption'>{user.email}</Text>
-              <Text variant='caption'>{user.email}</Text>
+              <Text variant='body'>{user.email}</Text>
             </Spacer>
+            <Spacer position='bottom' size='large' />
           </AvatarContainer>
         </TouchableOpacity>
         <SettingsItem
