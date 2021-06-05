@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
 
+import { Spacer } from '../../../components/spacer/spacer-component';
 import { Search } from '../components/search-component';
 import { useLocationContext } from '../../../services/location/customHook';
 import { useRestaurantsContext } from '../../../services/restaurants/customHook';

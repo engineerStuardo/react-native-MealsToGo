@@ -26,7 +26,7 @@ export const RegisterScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>Meals To Go</Title>
+      <Title>Sing Up</Title>
       <AccountContainer>
         <AuthInput
           label='Email'

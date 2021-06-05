@@ -31,6 +31,9 @@ export const AccountScreen = ({ navigation }) => {
           source={require('../../../../assets/food-loading-animation.json')}
         />
       </AnimationWrapper>
+      <Spacer position='top' size='large' />
+      <Spacer position='top' size='large' />
+      <Spacer position='top' size='large' />
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Colors } from 'react-native-paper';
 
+import { SafeArea } from '../../../components/utility/safe-area-component';
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 import { Spacer } from '../../../components/spacer/spacer-component';
 import { RestaurantList } from './restaurants.screen.styles';
@@ -18,7 +19,7 @@ export const RestaurantScreen = ({ navigation }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
-    <>
+    <SafeArea>
       {isLoading && (
         <LoadingContainer>
           <Loading size={50} animating={true} color={Colors.blue800} />
@@ -55,6 +56,6 @@ export const RestaurantScreen = ({ navigation }) => {
         }}
         keyExtractor={item => item.name}
       />
-    </>
+    </SafeArea>
   );
 };

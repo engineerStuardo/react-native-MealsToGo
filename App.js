@@ -9,7 +9,6 @@ import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import firebase from 'firebase';
 
 import { theme } from './src/infrastructure/theme';
-import { SafeArea } from './src/components/utility/safe-area-component';
 import { Navigation } from './src/infrastructure/navigation';
 import { AuthenticationProvider } from './src/services/authentication/authentication-context';
 
@@ -38,13 +37,13 @@ export default function App() {
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
   return (
-    <SafeArea>
+    <>
       <ThemeProvider theme={theme}>
         <AuthenticationProvider>
           <Navigation />
         </AuthenticationProvider>
       </ThemeProvider>
       <ExpoStatusBar style='auto' />
-    </SafeArea>
+    </>
   );
 }

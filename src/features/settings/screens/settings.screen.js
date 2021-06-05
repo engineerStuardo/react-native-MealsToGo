@@ -63,6 +63,7 @@ export const SettingsScreen = ({ navigation }) => {
           <Spacer position='top' size='large' />
           <Spacer position='top' size='large' />
           <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
+            <Spacer position='top' size='large' />
             <AvatarContainer>
               {!photo && (
                 <Avatar.Icon
