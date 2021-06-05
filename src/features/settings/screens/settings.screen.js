@@ -28,7 +28,16 @@ export const SettingsScreen = ({ navigation }) => {
 
   useFocusEffect(() => {
     getProfilePicture(user);
-  }, [user]);
+  });
+
+  const deleteProfilePhoto = async () => {
+    try {
+      await AsyncStorage.removeItem(`${user.uid}-photo`);
+      setPhoto(null);
+    } catch (error) {
+      console.log(`Error by deleting AsyncStorage ${error}`);
+    }
+  };
 
   return (
     <View>
@@ -53,7 +62,7 @@ export const SettingsScreen = ({ navigation }) => {
             )}
             <Text variant='caption'>(Tap to change photo)</Text>
             <Spacer position='top' size='large'>
-              <Text variant='body'>{user.email}</Text>
+              <Text variant='body'>Welcome, {user.email}</Text>
             </Spacer>
             <Spacer position='bottom' size='large' />
           </AvatarContainer>
@@ -63,6 +72,14 @@ export const SettingsScreen = ({ navigation }) => {
           description='View your favourites'
           left={props => <List.Icon {...props} color='black' icon='heart' />}
           onPress={() => navigation.navigate('Favourites')}
+        />
+        <SettingsItem
+          title='Delete photo'
+          description='Delete your profile photo'
+          left={props => (
+            <List.Icon {...props} color='black' icon='delete-forever' />
+          )}
+          onPress={() => deleteProfilePhoto()}
         />
         <SettingsItem
           title='Logout'
