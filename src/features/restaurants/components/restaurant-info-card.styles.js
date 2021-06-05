@@ -3,6 +3,8 @@ import { Card } from 'react-native-paper';
 
 const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};
+  width: 95%;
+  align-self: center;
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`

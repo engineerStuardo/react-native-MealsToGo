@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
 import { colors } from '../../../infrastructure/theme/colors';
@@ -25,8 +25,10 @@ export const RestaurantDetailScreen = ({ route }) => {
           theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Eggs Benedict' />
+          <Divider />
           <List.Item title='Classic Breakfast' />
         </List.Accordion>
+        <Divider />
 
         <List.Accordion
           title='Lunch'
@@ -36,9 +38,12 @@ export const RestaurantDetailScreen = ({ route }) => {
           theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Burger w/ Fries' />
+          <Divider />
           <List.Item title='Steak Sandwich' />
+          <Divider />
           <List.Item title='Mushroom Soup' />
         </List.Accordion>
+        <Divider />
 
         <List.Accordion
           title='Dinner'
@@ -48,9 +53,12 @@ export const RestaurantDetailScreen = ({ route }) => {
           theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Spaghetti Bolognese' />
+          <Divider />
           <List.Item title='Veal Cutlet with Chiken Mushroom Rotini' />
+          <Divider />
           <List.Item title='Steak Frites' />
         </List.Accordion>
+        <Divider />
 
         <List.Accordion
           title='Drinks'
@@ -60,11 +68,16 @@ export const RestaurantDetailScreen = ({ route }) => {
           theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Coffee' />
+          <Divider />
           <List.Item title='Tea' />
+          <Divider />
           <List.Item title='Modelo' />
+          <Divider />
           <List.Item title='Coke' />
+          <Divider />
           <List.Item title='Fanta' />
         </List.Accordion>
+        <Divider />
       </ScrollView>
     </>
   );
