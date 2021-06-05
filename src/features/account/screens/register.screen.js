@@ -13,6 +13,7 @@ import {
 import { Spacer } from '../../../components/spacer/spacer-component';
 import { useAuthenticationContext } from '../../../services/authentication/customHook';
 import { Text } from '../../../components/typography/text-component';
+import { colors } from '../../../infrastructure/theme/colors';
 
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -34,13 +35,14 @@ export const RegisterScreen = ({ navigation }) => {
           keyboardType='email-address'
           autoCapitalize='none'
           onChangeText={email => setEmail(email)}
+          theme={{ colors: { primary: colors.brand.primary } }}
         />
         <Spacer size='large'>
           <AuthInput
             right={
               <TextInput.Icon
                 name={`${showPassword ? 'eye' : 'eye-off'}`}
-                color={'gray'}
+                color={colors.ui.secondary}
                 size={28}
                 onPress={() => setShowPassword(!showPassword)}
               />
@@ -51,6 +53,7 @@ export const RegisterScreen = ({ navigation }) => {
             secureTextEntry={showPassword ? false : true}
             autoCapitalize='none'
             onChangeText={password => setPassword(password)}
+            theme={{ colors: { primary: colors.brand.primary } }}
           />
         </Spacer>
         <Spacer size='large'>
@@ -58,7 +61,7 @@ export const RegisterScreen = ({ navigation }) => {
             right={
               <TextInput.Icon
                 name={`${showRepeatedPassword ? 'eye' : 'eye-off'}`}
-                color={'gray'}
+                color={colors.ui.secondary}
                 size={28}
                 onPress={() => setShowRepeatedPassword(!showRepeatedPassword)}
               />
@@ -69,6 +72,7 @@ export const RegisterScreen = ({ navigation }) => {
             secureTextEntry={showRepeatedPassword ? false : true}
             autoCapitalize='none'
             onChangeText={password => setRepeatedPassword(password)}
+            theme={{ colors: { primary: colors.brand.primary } }}
           />
         </Spacer>
         <Spacer size='large'>

@@ -8,6 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useAuthenticationContext } from '../../../services/authentication/customHook';
 import { Text } from '../../../components/typography/text-component';
 import { Spacer } from '../../../components/spacer/spacer-component';
+import { colors } from '../../../infrastructure/theme/colors';
 
 const SettingsItem = styled(List.Item)`
   padding: ${props => props.theme.space[2]};
@@ -50,14 +51,14 @@ export const SettingsScreen = ({ navigation }) => {
               <Avatar.Icon
                 size={180}
                 icon='human'
-                style={{ backgroundColor: '#2182BD' }}
+                style={{ backgroundColor: colors.brand.primary }}
               />
             )}
             {photo && (
               <Avatar.Image
                 size={180}
                 source={{ uri: photo }}
-                style={{ backgroundColor: '#2182BD' }}
+                style={{ backgroundColor: colors.brand.primary }}
               />
             )}
             <Text variant='caption'>(Tap to change photo)</Text>
@@ -70,20 +71,20 @@ export const SettingsScreen = ({ navigation }) => {
         <SettingsItem
           title='Favourites'
           description='View your favourites'
-          left={props => <List.Icon {...props} color='black' icon='heart' />}
+          left={props => <List.Icon {...props} color='#5282BD' icon='heart' />}
           onPress={() => navigation.navigate('Favourites')}
         />
         <SettingsItem
           title='Delete photo'
           description='Delete your profile photo'
           left={props => (
-            <List.Icon {...props} color='black' icon='delete-forever' />
+            <List.Icon {...props} color='#5282BD' icon='delete-forever' />
           )}
           onPress={() => deleteProfilePhoto()}
         />
         <SettingsItem
           title='Logout'
-          left={props => <List.Icon {...props} color='black' icon='logout' />}
+          left={props => <List.Icon {...props} color='#5282BD' icon='logout' />}
           onPress={onLogout}
         />
       </List.Section>

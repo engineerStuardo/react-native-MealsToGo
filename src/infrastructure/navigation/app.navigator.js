@@ -8,6 +8,7 @@ import { RestaurantProvider } from '../../services/restaurants/restaurants-conte
 import { LocationProvider } from '../../services/location/location-context';
 import { FavouritesProvider } from '../../services/favourites/favourites-context';
 import { SettingsNavigator } from './settings.navigator';
+import { colors } from '../../infrastructure/theme/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,8 +31,8 @@ const createScreenOptions = ({ route }) => ({
 });
 
 const tabBarColors = () => ({
-  activeTintColor: '#fc6c85',
-  inactiveTintColor: 'gray',
+  activeTintColor: colors.brand.primary,
+  inactiveTintColor: colors.brand.muted,
 });
 
 export const AppNavigator = () => (

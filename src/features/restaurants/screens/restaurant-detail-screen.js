@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 
 import { RestaurantInfoCard } from '../components/restaurant-info-card';
+import { colors } from '../../../infrastructure/theme/colors';
 
 export const RestaurantDetailScreen = ({ route }) => {
   const { restaurant } = route.params;
@@ -21,6 +22,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           left={props => <List.Icon {...props} icon='bread-slice' />}
           expanded={breakfastExpanded}
           onPress={() => setBreakfastExpanded(!breakfastExpanded)}
+          theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Eggs Benedict' />
           <List.Item title='Classic Breakfast' />
@@ -31,6 +33,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           left={props => <List.Icon {...props} icon='hamburger' />}
           expanded={lunchExpanded}
           onPress={() => setLunchExpanded(!lunchExpanded)}
+          theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Burger w/ Fries' />
           <List.Item title='Steak Sandwich' />
@@ -42,6 +45,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           left={props => <List.Icon {...props} icon='food-variant' />}
           expanded={dinnerExpanded}
           onPress={() => setDinnerExpanded(!dinnerExpanded)}
+          theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Spaghetti Bolognese' />
           <List.Item title='Veal Cutlet with Chiken Mushroom Rotini' />
@@ -53,6 +57,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           left={props => <List.Icon {...props} icon='cup' />}
           expanded={drinksExpanded}
           onPress={() => setDrinksExpanded(!drinksExpanded)}
+          theme={{ colors: { primary: colors.brand.primary } }}
         >
           <List.Item title='Coffee' />
           <List.Item title='Tea' />
