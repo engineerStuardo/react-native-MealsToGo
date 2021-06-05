@@ -83,7 +83,7 @@ export const SettingsScreen = ({ navigation }) => {
         />
         <SettingsItem
           title='Logout'
-          left={props => <List.Icon {...props} color='black' icon='door' />}
+          left={props => <List.Icon {...props} color='black' icon='logout' />}
           onPress={onLogout}
         />
       </List.Section>
