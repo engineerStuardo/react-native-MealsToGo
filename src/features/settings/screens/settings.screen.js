@@ -67,7 +67,7 @@ export const SettingsScreen = ({ navigation }) => {
               {!photo && (
                 <Avatar.Icon
                   size={180}
-                  icon='human'
+                  icon='account'
                   style={{ backgroundColor: colors.brand.primary }}
                 />
               )}
