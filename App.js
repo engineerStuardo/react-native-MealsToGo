@@ -11,6 +11,7 @@ import firebase from 'firebase';
 import { theme } from './src/infrastructure/theme';
 import { Navigation } from './src/infrastructure/navigation';
 import { AuthenticationProvider } from './src/services/authentication/authentication-context';
+import { firebaseConfig } from './firebaseConfig';
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -24,15 +25,6 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) {
     return null;
   }
-
-  const firebaseConfig = {
-    apiKey: 'AIzaSyA0oUUEQKPy_VBq1-yOig_ij4-rj-fa0ac',
-    authDomain: 'mealstogo-5fec5.firebaseapp.com',
-    projectId: 'mealstogo-5fec5',
-    storageBucket: 'mealstogo-5fec5.appspot.com',
-    messagingSenderId: '295306349466',
-    appId: '1:295306349466:web:74136a3e554ddcc4cfc823',
-  };
 
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 

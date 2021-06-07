@@ -1,32 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Camera } from 'expo-camera';
-import styled from 'styled-components/native';
 import { View } from 'react-native';
-import { Text } from '../../../components/typography/text-component';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button } from 'react-native-paper';
-import { colors } from '../../../infrastructure/theme/colors';
 
+import { Text } from '../../../components/typography/text-component';
 import { useAuthenticationContext } from '../../../services/authentication/customHook';
-
-const ProfileCamera = styled(Camera)`
-  width: 100%;
-  height: 100%;
-`;
-
-const ButtonContainer = styled(View)`
-  flex: 1;
-  justify-content: flex-end;
-  align-self: center;
-  margin-bottom: 30px;
-  width: 150px;
-`;
-
-export const TakePhoto = styled(Button).attrs({
-  color: colors.brand.secondary,
-})`
-  padding: ${props => props.theme.space[0]};
-`;
+import {
+  ProfileCamera,
+  ButtonContainer,
+  TakePhoto,
+} from '../components/camera.screen.styles';
 
 export const CameraScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);

@@ -38,8 +38,8 @@ const SectionEnd = styled.View`
 `;
 
 const Icon = styled.Image`
-  width: 15px;
-  height: 15px;
+  width: ${props => props.theme.sizes[1]};
+  height: ${props => props.theme.sizes[1]};
 `;
 
 export {

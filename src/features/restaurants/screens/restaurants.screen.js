@@ -18,6 +18,20 @@ export const RestaurantScreen = ({ navigation }) => {
   const { favourites } = useFavouritesContext();
   const [isToggled, setIsToggled] = useState(false);
 
+  const renderItems = ({ item }) => (
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('RestaurantDetail', { restaurant: item })
+      }
+    >
+      <Spacer position='bottom' size='large'>
+        <FadeInView>
+          <RestaurantInfoCard restaurant={item} />
+        </FadeInView>
+      </Spacer>
+    </TouchableOpacity>
+  );
+
   return (
     <SafeArea>
       {isLoading && (
@@ -37,21 +51,7 @@ export const RestaurantScreen = ({ navigation }) => {
       )}
       <RestaurantList
         data={restaurants}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('RestaurantDetail', { restaurant: item })
-              }
-            >
-              <Spacer position='bottom' size='large'>
-                <FadeInView>
-                  <RestaurantInfoCard restaurant={item} />
-                </FadeInView>
-              </Spacer>
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={renderItems}
         keyExtractor={item => item.name}
       />
     </SafeArea>

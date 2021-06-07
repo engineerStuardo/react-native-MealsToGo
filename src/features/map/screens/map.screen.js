@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import MapView from 'react-native-maps';
-import styled from 'styled-components/native';
 
-import { Spacer } from '../../../components/spacer/spacer-component';
 import { Search } from '../components/search-component';
 import { useLocationContext } from '../../../services/location/customHook';
 import { useRestaurantsContext } from '../../../services/restaurants/customHook';
 import { MapCallout } from '../components/map-callout-component';
-
-const Map = styled(MapView)`
-  height: 100%;
-  width: 100%;
-`;
+import { Map } from '../components/map.screen.styles';
 
 export const MapScreen = ({ navigation }) => {
   const { location } = useLocationContext();

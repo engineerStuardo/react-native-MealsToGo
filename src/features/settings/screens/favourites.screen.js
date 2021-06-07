@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
 import { RestaurantInfoCard } from '../../../features/restaurants/components/restaurant-info-card';
@@ -7,12 +6,7 @@ import { Spacer } from '../../../components/spacer/spacer-component';
 import { RestaurantList } from '../../../features/restaurants/screens/restaurants.screen.styles';
 import { useFavouritesContext } from '../../../services/favourites/customHook';
 import { Text } from '../../../components/typography/text-component';
-
-const NoFavouritesArea = styled.View`
-  margin-top: 30px;
-  align-items: center;
-  justify-content: center;
-`;
+import { NoFavouritesArea } from '../components/favourites.screen.styles';
 
 export const FavouritesScreen = ({ navigation }) => {
   const { favourites } = useFavouritesContext();

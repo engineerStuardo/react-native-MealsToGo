@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   createStackNavigator,
   CardStyleInterpolators,
@@ -10,13 +10,14 @@ import { CameraScreen } from '../../features/settings/screens/camera.screen';
 
 const SettingsStack = createStackNavigator();
 
-export const SettingsNavigator = ({ route, navigation }) => {
+export const SettingsNavigator = () => {
   return (
     <SettingsStack.Navigator
       headerMode='screen'
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
+      initialRouteName='Settings'
     >
       <SettingsStack.Screen
         options={{
