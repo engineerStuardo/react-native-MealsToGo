@@ -1,7 +1,11 @@
 import React, { useState, createContext, useEffect } from 'react';
 import * as firebase from 'firebase';
 
-import { loginRequest } from './authentication-service';
+import {
+  loginRequest,
+  registerRequest,
+  logoutRequest,
+} from './authentication-service';
 
 export const AuthenticationContext = createContext();
 
@@ -41,9 +45,7 @@ export const AuthenticationProvider = ({ children }) => {
       setIsLoading(false);
       return;
     }
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+    registerRequest(email, password)
       .then(userInfo => {
         setUser(userInfo);
         setIsLoading(false);
@@ -56,13 +58,10 @@ export const AuthenticationProvider = ({ children }) => {
 
   const onLogout = () => {
     setUser(null);
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        setUser(null);
-        setError(null);
-      });
+    logoutRequest().then(() => {
+      setUser(null);
+      setError(null);
+    });
   };
 
   return (

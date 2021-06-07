@@ -11,10 +11,8 @@ import {
   Title,
   AnimationWrapper,
 } from '../components/account.styles';
-import { useAuthenticationContext } from '../../../services/authentication/customHook';
 
 export const AccountScreen = ({ navigation }) => {
-  const { setError } = useAuthenticationContext();
   const animation = useRef(null);
 
   useEffect(() => {
@@ -39,10 +37,7 @@ export const AccountScreen = ({ navigation }) => {
         <AuthButton
           icon='login'
           mode='contained'
-          onPress={() => {
-            setError(null);
-            navigation.navigate('Login');
-          }}
+          onPress={() => navigation.navigate('Login')}
         >
           Login
         </AuthButton>

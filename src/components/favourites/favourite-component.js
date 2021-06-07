@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 
 import { useFavouritesContext } from '../../services/favourites/customHook';
+import { colors } from '../../infrastructure/theme/colors';
 
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
@@ -30,7 +31,7 @@ export const Favourite = ({ restaurant }) => {
       <AntDesign
         name={isFavourite ? 'heart' : 'hearto'}
         size={24}
-        color={isFavourite ? 'red' : 'white'}
+        color={isFavourite ? colors.ui.error : colors.ui.quaternary}
       />
     </FavouriteButton>
   );

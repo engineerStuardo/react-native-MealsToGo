@@ -8,7 +8,7 @@ import { RegisterScreen } from '../../features/account/screens/register.screen';
 const AccountStack = createStackNavigator();
 
 export const AccountNavigator = () => (
-  <AccountStack.Navigator headerMode='none'>
+  <AccountStack.Navigator headerMode='none' initialRouteName='Main'>
     <AccountStack.Screen name='Main' component={AccountScreen} />
     <AccountStack.Screen name='Login' component={LoginScreen} />
     <AccountStack.Screen name='Register' component={RegisterScreen} />

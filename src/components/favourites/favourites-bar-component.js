@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import { Spacer } from '../spacer/spacer-component';
 import { CompactRestaurantInfo } from '../restaurant/compact-restaurant-info-component';
 import { Text } from '../typography/text-component';
+import { FadeInView } from '../animations/fade.animation';
 
 const FavouritesWrapper = styled(Card)`
   padding: 10px;
@@ -13,13 +14,28 @@ const FavouritesWrapper = styled(Card)`
   border-radius: 15px;
 `;
 
+const TitleCenter = styled.View`
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const FavouritesBar = ({ favourites, onNavigate }) => {
-  if (!favourites.length) return null;
   return (
     <FavouritesWrapper elevation={3}>
       <Spacer position='left' size='large'>
-        <Text variant='caption'>Favourites</Text>
+        <TitleCenter>
+          <Text variant='caption'>Favourites</Text>
+          {!favourites.length && (
+            <>
+              <Spacer position='top' size='large' />
+              <Text variant='error'> No favourites yet...</Text>
+              <Spacer position='bottom' size='large' />
+            </>
+          )}
+        </TitleCenter>
       </Spacer>
+      <Spacer position='bottom' size='large' />
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favourites.map(restaurant => {
           const key = restaurant.name.split(' ').join('');
@@ -28,7 +44,9 @@ export const FavouritesBar = ({ favourites, onNavigate }) => {
               <TouchableOpacity
                 onPress={() => onNavigate('RestaurantDetail', { restaurant })}
               >
-                <CompactRestaurantInfo restaurant={restaurant} />
+                <FadeInView>
+                  <CompactRestaurantInfo restaurant={restaurant} />
+                </FadeInView>
               </TouchableOpacity>
             </Spacer>
           );

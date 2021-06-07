@@ -1,39 +1,15 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
 
+import { createScreenOptions, tabBarColors } from './app.navigator.options';
 import { RestaurantNavigator } from './restaurants.navigator';
 import { MapScreen } from '../../features/map/screens/map.screen';
 import { RestaurantProvider } from '../../services/restaurants/restaurants-context';
 import { LocationProvider } from '../../services/location/location-context';
 import { FavouritesProvider } from '../../services/favourites/favourites-context';
 import { SettingsNavigator } from './settings.navigator';
-import { colors } from '../../infrastructure/theme/colors';
 
 const Tab = createBottomTabNavigator();
-
-const TAB_ICON = {
-  Restaurant: 'fast-food',
-  onFocusRestaurant: 'fast-food-outline',
-  Map: 'ios-map',
-  onFocusMap: 'ios-map-outline',
-  Settings: 'settings-sharp',
-  onFocusSettings: 'settings-outline',
-};
-
-const createScreenOptions = ({ route }) => ({
-  tabBarIcon: ({ focused, color, size }) => {
-    const iconName = focused
-      ? TAB_ICON[`onFocus${route.name}`]
-      : TAB_ICON[route.name];
-    return <Ionicons name={iconName} size={size} color={color} />;
-  },
-});
-
-const tabBarColors = () => ({
-  activeTintColor: colors.brand.primary,
-  inactiveTintColor: colors.brand.muted,
-});
 
 export const AppNavigator = () => (
   <FavouritesProvider>
@@ -42,6 +18,7 @@ export const AppNavigator = () => (
         <Tab.Navigator
           screenOptions={createScreenOptions}
           tabBarOptions={tabBarColors()}
+          initialRouteName='Restaurant'
         >
           <Tab.Screen name='Restaurant' component={RestaurantNavigator} />
           <Tab.Screen name='Map' component={MapScreen} />
